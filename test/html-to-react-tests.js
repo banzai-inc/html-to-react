@@ -440,6 +440,21 @@ describe('Html2React', function () {
         assert.equal(reactComponent.props.children.length, 5);
       });
     });
+    it('passes options args to processNode', function () {
+      const htmlInput = '<p></p>';
+      const newParser = Parser({args: {test: 'test',},});
+      const processingInstructions = [{
+        shouldProcessNode: function (node) { return true; },
+        processNode: function (el, children, index, args) {
+          return args;
+        },
+      }, ];
+      const reactComponent = newParser.parseWithInstructions(
+        htmlInput, function () { return true; }, processingInstructions
+      );
+
+      assert.equal(reactComponent.test, 'test');
+    });
   });
 
   describe('parse SVG', function () {
