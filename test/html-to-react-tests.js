@@ -440,17 +440,19 @@ describe('Html2React', function () {
         assert.equal(reactComponent.props.children.length, 5);
       });
     });
-    it('passes options args to processNode', function () {
+    it('passes optional args to processNode', function () {
       const htmlInput = '<p></p>';
-      const newParser = Parser({args: {test: 'test',},});
       const processingInstructions = [{
         shouldProcessNode: function (node) { return true; },
         processNode: function (el, children, index, args) {
           return args;
         },
       }, ];
-      const reactComponent = newParser.parseWithInstructions(
-        htmlInput, function () { return true; }, processingInstructions
+      const reactComponent = parser.parseWithInstructions(
+        htmlInput,
+        function () { return true; },
+        processingInstructions,
+        {test: 'test',}
       );
 
       assert.equal(reactComponent.test, 'test');
