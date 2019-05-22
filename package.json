@@ -1,6 +1,6 @@
 {
   "name": "@banzai-inc/html-to-react",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "A lightweight library that converts raw HTML to a React DOM structure.",
   "main": "index.js",
   "scripts": {
